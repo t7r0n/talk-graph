@@ -1,2 +1,0 @@
-[console_scripts]
-talk-graph = talk_graph.cli:main
