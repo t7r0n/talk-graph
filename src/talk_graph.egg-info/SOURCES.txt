@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+src/talk_graph/__init__.py
+src/talk_graph/cli.py
+src/talk_graph/core.py
+src/talk_graph.egg-info/PKG-INFO
+src/talk_graph.egg-info/SOURCES.txt
+src/talk_graph.egg-info/dependency_links.txt
+src/talk_graph.egg-info/entry_points.txt
+src/talk_graph.egg-info/top_level.txt
+tests/test_workflow.py

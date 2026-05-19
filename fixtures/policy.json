@@ -1,0 +1,18 @@
+{
+  "company": "Aalto",
+  "repo": "talk-graph",
+  "metrics": [
+    "founder_coverage",
+    "talks_risk",
+    "monthly_precision",
+    "fireside_latency"
+  ],
+  "failure_modes": [
+    "founder_drift",
+    "talks_gap",
+    "monthly_misroute",
+    "fireside_blindspot"
+  ],
+  "minimum_cases": 144,
+  "requires_evidence_markers": true
+}

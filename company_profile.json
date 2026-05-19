@@ -1,0 +1,54 @@
+{
+  "company": "Aalto",
+  "company_slug": "aalto",
+  "repo": "talk-graph",
+  "package": "talk_graph",
+  "cli": "talk-graph",
+  "title": "Talk Graph",
+  "problem": "Founder Talks is a monthly fireside chat that produces ~60 minutes of dense, unindexed video per event. A Sprint applicant who wants to ask \"what did Marten say about hiring your first 10 people?\" has no choice but to scrub the YouTube playlist. Worse, the programme's own pitch - \"alumni have built EUR30B in value\" - has no clickable trail of evidence linking the speakers, the lessons, and the companies built downstream.",
+  "direction": "A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each lesson to the alumni companies it influenced.",
+  "why": "University programmes cannot ship hallucinated quotes attributed to real founders; the schema rejection loop is what makes this safe to launch with the Aalto logo.",
+  "terms": [
+    "founder",
+    "talks",
+    "monthly",
+    "fireside",
+    "produces",
+    "minutes",
+    "dense",
+    "unindexed",
+    "video",
+    "event",
+    "sprint",
+    "applicant",
+    "wants",
+    "marten",
+    "hiring",
+    "first",
+    "people",
+    "choice"
+  ],
+  "metrics": [
+    "founder_coverage",
+    "talks_risk",
+    "monthly_precision",
+    "fireside_latency"
+  ],
+  "failure_modes": [
+    "founder_drift",
+    "talks_gap",
+    "monthly_misroute",
+    "fireside_blindspot"
+  ],
+  "sources": [
+    "https://www.aalto.fi/en/founder-school/founder-talks-new-event-series-brings-founders-on-stage",
+    "https://www.aalto.fi/en/founder-school/founder-sprint",
+    "https://www.youtube.com/playlist?list=PLJJ2tnFVQ9wTk_-QEcIOIfPc7IGEeiGbx",
+    "https://www.aalto.fi/en/advancing-entrepreneurship-and-innovations/aalto-university-and-the-startup-event-slush",
+    "https://www.aalto.fi/en/advancing-entrepreneurship-and-innovations",
+    "https://avp.aalto.fi/make-your-own-journey-8-lessons-from-marten-mickos-to-aspiring-entrepreneurs/",
+    "https://entu.aalto.fi/post/building-founder-school-from-the-start-an-interview-with-kasper-suomalainen",
+    "https://techcrunch.com/2021/08/12/sequoia-leads-13m-investment-in-aalto/"
+  ],
+  "github_url": "https://github.com/t7r0n/talk-graph"
+}
