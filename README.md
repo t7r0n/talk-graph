@@ -2,19 +2,39 @@
 
 A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each lesson to the alumni companies it influenced.
 
-## Why This Exists
+![Talk Graph working dashboard](outputs/project_working.svg)
 
-Founder Talks is a monthly fireside chat that produces ~60 minutes of dense, unindexed video per event. A Sprint applicant who wants to ask "what did Marten say about hiring your first 10 people?" has no choice but to scrub the YouTube playlist. Worse, the programme's own pitch - "alumni have built EUR30B in value" - has no clickable trail of evidence linking the speakers, the lessons, and the companies built downstream.
+## Why it exists
 
-## What It Builds
+Founder Talks is a monthly fireside chat that produces ~60 minutes of dense, unindexed video per event.
 
-- Replays synthetic `founder` and `talks` cases against the project's evidence rules.
-- Scores `founder_coverage`, `talks_risk`, and `monthly_precision` so regressions are visible in CSV and JSON.
-- Plants `founder drift` and `talks gap` failures as negative controls.
-- Writes citation-locked decision claims; unsupported claims fail verification.
-- Exports a review dashboard and demo pack for `talk-graph` without hosted services.
+Most internal demos stop at a pretty chart. This repository is built around the harder part: a repeatable path from fixture, to failure, to evidence, to the operator action a serious team would actually trust.
 
-## Local Run
+## What is inside
+
+- A deterministic replay harness tuned around founder, talks, and monthly.
+- Company-specific strategy code in `src/talk_graph/strategy.py`, not just README-level customization.
+- Citation-locked reports where every decision claim has to point back to a generated evidence ID.
+- Two visual artifacts generated from the latest run: `outputs/project_working.svg` and `outputs/evidence_map.svg`.
+- A portable demo pack with JSON, CSV, Markdown, HTML, SVG, and benchmark artifacts.
+
+![Talk Graph evidence map](outputs/evidence_map.svg)
+
+## Signals it measures
+
+- `founder coverage`
+- `talks risk`
+- `monthly precision`
+- `fireside latency`
+
+## Failure modes it plants
+
+- founder drift
+- talks gap
+- monthly misroute
+- fireside blindspot
+
+## Run it locally
 
 ```bash
 uv sync
@@ -23,16 +43,14 @@ uv run pytest -q
 uv run ruff check .
 ```
 
-## Outputs
+## Outputs worth opening
 
-- `outputs/analysis.json`
-- `outputs/scenario_report.csv`
-- `outputs/decision_report.md`
-- `outputs/evidence_packet.md`
-- `outputs/domain_rubric.json`
-- `outputs/failure_matrix.md`
-- `outputs/trace_graph.mmd`
 - `outputs/dashboard.html`
+- `outputs/project_working.svg`
+- `outputs/evidence_map.svg`
+- `outputs/operator_brief.md`
+- `outputs/decision_report.md`
+- `outputs/strategy_model.json`
 - `outputs/demo_pack.zip`
 
 ## Sources
@@ -48,4 +66,4 @@ uv run ruff check .
 
 ## Boundary
 
-This repository uses synthetic fixtures only. It has no credentials, no customer data, no outreach data, and no dependency on a hosted API.
+Everything runs locally against synthetic fixtures. There are no credentials, no customer records, no outreach files, and no hosted API dependency.
