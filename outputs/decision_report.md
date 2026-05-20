@@ -1,6 +1,6 @@
 # Decision Report: Talk Graph
 
-A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each lesson to the alumni companies it influenced.
+A retrieval-augmented operator knowledge graph that turns long-form talks into clickable, citable, searchable advice and links each lesson to the evidence that supports it.
 
 ## Evidence-Grounded Findings
 

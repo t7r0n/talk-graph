@@ -18,7 +18,7 @@
   <rect class="bg" width="1120" height="650" rx="0"/>
   <rect class="panel" x="28" y="28" width="1064" height="594" rx="8"/>
   <text class="title" x="64" y="76">Talk Graph Control Room</text>
-  <text class="sub" x="64" y="108"><tspan x="64" dy="0">A retrieval augmented founder coaching surface that turns every Founder Talk into</tspan><tspan x="64" dy="22">clickable, citable, searchable advice - and stitches each lesson to the alumni</tspan></text>
+  <text class="sub" x="64" y="108"><tspan x="64" dy="0">A retrieval-augmented operator knowledge graph that turns long-form talks into</tspan><tspan x="64" dy="22">clickable, citable, searchable advice and links each lesson to the evidence that</tspan></text>
   <rect class="tile" x="64" y="160" width="220" height="84" rx="8"/>
   <text class="small" x="84" y="188">pressure index</text>
   <text class="metric" x="84" y="224">0.3167</text>

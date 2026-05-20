@@ -1,18 +1,18 @@
 # Talk Graph
 
-A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each lesson to the alumni companies it influenced.
+A retrieval-augmented operator knowledge graph that turns long-form talks into clickable, citable, searchable advice and links each lesson to the evidence that supports it.
 
 ![Talk Graph working dashboard](outputs/project_working.svg)
 
 ## Why it exists
 
-Founder Talks is a monthly fireside chat that produces ~60 minutes of dense, unindexed video per event.
+Teams publish dense operator talks, office-hour recordings, and advisory sessions, but the most useful advice is trapped in long video and transcript archives.
 
 Most internal demos stop at a pretty chart. This repository is built around the harder part: a repeatable path from fixture, to failure, to evidence, to the operator action a serious team would actually trust.
 
 ## What is inside
 
-- A deterministic replay harness tuned around founder, talks, and monthly.
+- A deterministic replay harness tuned around talks, evidence, and retrieval quality.
 - Company-specific strategy code in `src/talk_graph/strategy.py`, not just README-level customization.
 - Citation-locked reports where every decision claim has to point back to a generated evidence ID.
 - Two visual artifacts generated from the latest run: `outputs/project_working.svg` and `outputs/evidence_map.svg`.
@@ -22,14 +22,14 @@ Most internal demos stop at a pretty chart. This repository is built around the 
 
 ## Signals it measures
 
-- `founder coverage`
+- `evidence coverage`
 - `talks risk`
 - `monthly precision`
 - `fireside latency`
 
 ## Failure modes it plants
 
-- founder drift
+- evidence drift
 - talks gap
 - monthly misroute
 - fireside blindspot

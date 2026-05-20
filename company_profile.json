@@ -5,8 +5,8 @@
   "package": "talk_graph",
   "cli": "talk-graph",
   "title": "Talk Graph",
-  "problem": "Founder Talks is a monthly fireside chat that produces ~60 minutes of dense, unindexed video per event. A Sprint applicant who wants to ask \"what did Marten say about hiring your first 10 people?\" has no choice but to scrub the YouTube playlist. Worse, the programme's own pitch - \"alumni have built EUR30B in value\" - has no clickable trail of evidence linking the speakers, the lessons, and the companies built downstream.",
-  "direction": "A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each lesson to the alumni companies it influenced.",
+  "problem": "Teams publish dense operator talks, office-hour recordings, and advisory sessions, but the most useful advice is trapped in long video and transcript archives. A builder trying to answer a specific question still has to scrub recordings manually and cannot trace a recommendation back to the exact quote, speaker context, and downstream lesson.",
+  "direction": "A retrieval-augmented operator knowledge graph that turns long-form talks into clickable, citable, searchable advice and links each lesson to the evidence that supports it.",
   "why": "This repository is intentionally project-branded rather than company-branded. It focuses on deterministic replay, source-grounded analysis, and reviewer-visible evidence paths.",
   "terms": [
     "evidence",
