@@ -1,69 +1,73 @@
 {
-  "company": "Aalto",
+  "company": "Talk Graph",
   "repo": "talk-graph",
   "terms": [
-    "founder",
-    "talks",
-    "monthly",
-    "fireside",
-    "produces",
-    "minutes",
-    "dense",
-    "unindexed"
+    "evidence",
+    "workflow",
+    "review",
+    "claims",
+    "fixtures",
+    "replay",
+    "handoff",
+    "trace",
+    "policy",
+    "decision",
+    "coverage",
+    "latency"
   ],
   "metrics": [
-    "founder_coverage",
-    "talks_risk",
-    "monthly_precision",
-    "fireside_latency"
+    "evidence_coverage",
+    "handoff_risk",
+    "claim_precision",
+    "review_latency"
   ],
   "failure_modes": [
-    "founder_drift",
-    "talks_gap",
-    "monthly_misroute",
-    "fireside_blindspot"
+    "evidence_drift",
+    "handoff_gap",
+    "claim_misroute",
+    "review_blindspot"
   ],
-  "evidence_density": 17.75,
+  "evidence_density": 18.5,
   "pressure_index": 0.3167,
   "blocked_share": 0.0972,
   "review_share": 0.1319,
   "top_leverage_points": [
     {
       "rank": 1,
-      "scenario": "founder evidence replay",
-      "metric": "founder_coverage",
-      "failure_mode": "founder_drift",
-      "evidence": "ev_0132",
+      "scenario": "evidence replay",
+      "metric": "evidence_coverage",
+      "failure_mode": "evidence_drift",
+      "evidence": "ev_0000",
       "operator_action": "block release until cited evidence is regenerated",
       "severity": 2.611
     },
     {
       "rank": 2,
-      "scenario": "fireside operator packet",
-      "metric": "talks_risk",
-      "failure_mode": "talks_gap",
-      "evidence": "ev_0099",
+      "scenario": "review operator packet",
+      "metric": "handoff_risk",
+      "failure_mode": "handoff_gap",
+      "evidence": "ev_0055",
       "operator_action": "accept only if decision claims cite fixture evidence",
       "severity": 2.556
     },
     {
       "rank": 3,
-      "scenario": "monthly regression harness",
-      "metric": "monthly_precision",
-      "failure_mode": "monthly_misroute",
-      "evidence": "ev_0110",
+      "scenario": "claim regression harness",
+      "metric": "claim_precision",
+      "failure_mode": "claim_misroute",
+      "evidence": "ev_0022",
       "operator_action": "open a regression issue with trace and benchmark delta",
       "severity": 2.528
     },
     {
       "rank": 4,
-      "scenario": "talks boundary probe",
-      "metric": "fireside_latency",
-      "failure_mode": "fireside_blindspot",
+      "scenario": "handoff boundary probe",
+      "metric": "review_latency",
+      "failure_mode": "review_blindspot",
       "evidence": "ev_0033",
       "operator_action": "route to reviewer with evidence packet",
       "severity": 2.528
     }
   ],
-  "readout": "Aalto gets a local, deterministic pressure test around founder, talks, and monthly. The useful part is not the dashboard; it is the repeatable evidence path from fixture to failure to operator action."
+  "readout": "This local harness runs a deterministic pressure test around evidence, workflow, and review. The useful part is not the dashboard; it is the repeatable evidence path from fixture to failure to operator action."
 }

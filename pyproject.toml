@@ -1,7 +1,7 @@
 [project]
 name = "talk-graph"
 version = "0.1.0"
-description = "A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each "
+description = "A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice "
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [

@@ -53,17 +53,6 @@ uv run ruff check .
 - `outputs/strategy_model.json`
 - `outputs/demo_pack.zip`
 
-## Sources
-
-- https://www.aalto.fi/en/founder-school/founder-talks-new-event-series-brings-founders-on-stage
-- https://www.aalto.fi/en/founder-school/founder-sprint
-- https://www.youtube.com/playlist?list=PLJJ2tnFVQ9wTk_-QEcIOIfPc7IGEeiGbx
-- https://www.aalto.fi/en/advancing-entrepreneurship-and-innovations/aalto-university-and-the-startup-event-slush
-- https://www.aalto.fi/en/advancing-entrepreneurship-and-innovations
-- https://avp.aalto.fi/make-your-own-journey-8-lessons-from-marten-mickos-to-aspiring-entrepreneurs/
-- https://entu.aalto.fi/post/building-founder-school-from-the-start-an-interview-with-kasper-suomalainen
-- https://techcrunch.com/2021/08/12/sequoia-leads-13m-investment-in-aalto/
-
 ## Boundary
 
 Everything runs locally against synthetic fixtures. There are no credentials, no customer records, no outreach files, and no hosted API dependency.

@@ -1,66 +1,57 @@
 {
   "repo": "talk-graph",
-  "company": "Aalto",
+  "company": "Talk Graph",
   "rubric_axes": [
     {
-      "axis": "founder_coverage",
+      "axis": "evidence_coverage",
       "failures": [
-        "founder_drift"
+        "evidence_drift"
       ],
       "evidence_required": true
     },
     {
-      "axis": "talks_risk",
+      "axis": "handoff_risk",
       "failures": [
-        "talks_gap"
+        "handoff_gap"
       ],
       "evidence_required": true
     },
     {
-      "axis": "monthly_precision",
+      "axis": "claim_precision",
       "failures": [
-        "monthly_misroute"
+        "claim_misroute"
       ],
       "evidence_required": true
     },
     {
-      "axis": "fireside_latency",
+      "axis": "review_latency",
       "failures": [
-        "fireside_blindspot"
+        "review_blindspot"
       ],
       "evidence_required": true
     }
   ],
   "archetypes": [
     {
-      "name": "founder evidence replay",
-      "trigger": "founder signal changes while talks context is stale",
+      "name": "evidence replay",
+      "trigger": "source evidence changes while workflow context is stale",
       "expected": "block release until cited evidence is regenerated"
     },
     {
-      "name": "talks boundary probe",
-      "trigger": "talks handoff crosses a policy or trust boundary",
+      "name": "handoff boundary probe",
+      "trigger": "handoff crosses a policy or trust boundary",
       "expected": "route to reviewer with evidence packet"
     },
     {
-      "name": "monthly regression harness",
-      "trigger": "monthly behavior regresses against the last accepted fixture",
+      "name": "claim regression harness",
+      "trigger": "claim behavior regresses against the last accepted fixture",
       "expected": "open a regression issue with trace and benchmark delta"
     },
     {
-      "name": "fireside operator packet",
-      "trigger": "fireside output needs a human-readable audit packet",
+      "name": "review operator packet",
+      "trigger": "review output needs a human-readable audit packet",
       "expected": "accept only if decision claims cite fixture evidence"
     }
   ],
-  "sources_used": [
-    "https://www.aalto.fi/en/founder-school/founder-talks-new-event-series-brings-founders-on-stage",
-    "https://www.aalto.fi/en/founder-school/founder-sprint",
-    "https://www.youtube.com/playlist?list=PLJJ2tnFVQ9wTk_-QEcIOIfPc7IGEeiGbx",
-    "https://www.aalto.fi/en/advancing-entrepreneurship-and-innovations/aalto-university-and-the-startup-event-slush",
-    "https://www.aalto.fi/en/advancing-entrepreneurship-and-innovations",
-    "https://avp.aalto.fi/make-your-own-journey-8-lessons-from-marten-mickos-to-aspiring-entrepreneurs/",
-    "https://entu.aalto.fi/post/building-founder-school-from-the-start-an-interview-with-kasper-suomalainen",
-    "https://techcrunch.com/2021/08/12/sequoia-leads-13m-investment-in-aalto/"
-  ]
+  "sources_used": []
 }

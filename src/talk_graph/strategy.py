@@ -6,53 +6,13 @@ from pathlib import Path
 from typing import Any
 
 
-COMPANY = "Aalto"
-REPO = "talk-graph"
-PROJECT_TERMS = [
-    "founder",
-    "talks",
-    "monthly",
-    "fireside",
-    "produces",
-    "minutes",
-    "dense",
-    "unindexed"
-]
-PROJECT_METRICS = [
-    "founder_coverage",
-    "talks_risk",
-    "monthly_precision",
-    "fireside_latency"
-]
-PROJECT_FAILURES = [
-    "founder_drift",
-    "talks_gap",
-    "monthly_misroute",
-    "fireside_blindspot"
-]
-PROJECT_ARCHETYPES = [
-    {
-        "name": "founder evidence replay",
-        "trigger": "founder signal changes while talks context is stale",
-        "expected": "block release until cited evidence is regenerated"
-    },
-    {
-        "name": "talks boundary probe",
-        "trigger": "talks handoff crosses a policy or trust boundary",
-        "expected": "route to reviewer with evidence packet"
-    },
-    {
-        "name": "monthly regression harness",
-        "trigger": "monthly behavior regresses against the last accepted fixture",
-        "expected": "open a regression issue with trace and benchmark delta"
-    },
-    {
-        "name": "fireside operator packet",
-        "trigger": "fireside output needs a human-readable audit packet",
-        "expected": "accept only if decision claims cite fixture evidence"
-    }
-]
-PROJECT_DIRECTION = "A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each lesson to the alumni companies it influenced."
+COMPANY = 'Talk Graph'
+REPO = 'talk-graph'
+PROJECT_TERMS = ['evidence', 'workflow', 'review', 'claims', 'fixtures', 'replay', 'handoff', 'trace', 'policy', 'decision', 'coverage', 'latency']
+PROJECT_METRICS = ['evidence_coverage', 'handoff_risk', 'claim_precision', 'review_latency']
+PROJECT_FAILURES = ['evidence_drift', 'handoff_gap', 'claim_misroute', 'review_blindspot']
+PROJECT_ARCHETYPES = [{'name': 'evidence replay', 'trigger': 'source evidence changes while workflow context is stale', 'expected': 'block release until cited evidence is regenerated'}, {'name': 'handoff boundary probe', 'trigger': 'handoff crosses a policy or trust boundary', 'expected': 'route to reviewer with evidence packet'}, {'name': 'claim regression harness', 'trigger': 'claim behavior regresses against the last accepted fixture', 'expected': 'open a regression issue with trace and benchmark delta'}, {'name': 'review operator packet', 'trigger': 'review output needs a human-readable audit packet', 'expected': 'accept only if decision claims cite fixture evidence'}]
+PROJECT_DIRECTION = 'A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each lesson to the alumni companies it influenced.'
 
 
 def _short(value: str, limit: int = 44) -> str:
@@ -142,7 +102,7 @@ def build_signal_model(rows: list[dict[str, Any]], clusters: list[dict[str, Any]
         "review_share": round(review / total, 4),
         "top_leverage_points": leverage,
         "readout": (
-            f"{COMPANY} gets a local, deterministic pressure test around "
+            "This local harness runs a deterministic pressure test around "
             f"{PROJECT_TERMS[0]}, {PROJECT_TERMS[1]}, and {PROJECT_TERMS[2]}. "
             f"The useful part is not the dashboard; it is the repeatable evidence path "
             f"from fixture to failure to operator action."

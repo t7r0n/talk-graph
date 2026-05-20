@@ -1,37 +1,37 @@
 {
-  "company": "Aalto",
+  "company": "Talk Graph",
   "repo": "talk-graph",
   "metrics": [
-    "founder_coverage",
-    "talks_risk",
-    "monthly_precision",
-    "fireside_latency"
+    "evidence_coverage",
+    "handoff_risk",
+    "claim_precision",
+    "review_latency"
   ],
   "failure_modes": [
-    "founder_drift",
-    "talks_gap",
-    "monthly_misroute",
-    "fireside_blindspot"
+    "evidence_drift",
+    "handoff_gap",
+    "claim_misroute",
+    "review_blindspot"
   ],
   "domain_archetypes": [
     {
-      "name": "founder evidence replay",
-      "trigger": "founder signal changes while talks context is stale",
+      "name": "evidence replay",
+      "trigger": "source evidence changes while workflow context is stale",
       "expected": "block release until cited evidence is regenerated"
     },
     {
-      "name": "talks boundary probe",
-      "trigger": "talks handoff crosses a policy or trust boundary",
+      "name": "handoff boundary probe",
+      "trigger": "handoff crosses a policy or trust boundary",
       "expected": "route to reviewer with evidence packet"
     },
     {
-      "name": "monthly regression harness",
-      "trigger": "monthly behavior regresses against the last accepted fixture",
+      "name": "claim regression harness",
+      "trigger": "claim behavior regresses against the last accepted fixture",
       "expected": "open a regression issue with trace and benchmark delta"
     },
     {
-      "name": "fireside operator packet",
-      "trigger": "fireside output needs a human-readable audit packet",
+      "name": "review operator packet",
+      "trigger": "review output needs a human-readable audit packet",
       "expected": "accept only if decision claims cite fixture evidence"
     }
   ],
