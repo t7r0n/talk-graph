@@ -60,6 +60,46 @@ def _short(value: str, limit: int = 44) -> str:
     return value if len(value) <= limit else value[: limit - 1].rstrip() + "..."
 
 
+def _wrap(value: str, limit: int = 48, max_lines: int = 3) -> list[str]:
+    words = " ".join(value.split()).split()
+    lines: list[str] = []
+    current: list[str] = []
+    for word in words:
+        candidate = " ".join([*current, word])
+        if len(candidate) <= limit:
+            current.append(word)
+            continue
+        if current:
+            lines.append(" ".join(current))
+        current = [word]
+        if len(lines) == max_lines:
+            break
+    if current and len(lines) < max_lines:
+        lines.append(" ".join(current))
+    if len(lines) == max_lines and len(" ".join(words)) > len(" ".join(lines)):
+        lines[-1] = _short(lines[-1], max(8, limit - 1))
+    return lines or [""]
+
+
+def _text_block(
+    value: str,
+    *,
+    x: int,
+    y: int,
+    css: str,
+    limit: int,
+    max_lines: int,
+    line_height: int,
+) -> str:
+    lines = _wrap(value, limit=limit, max_lines=max_lines)
+    parts = [f'<text class="{css}" x="{x}" y="{y}">']
+    for index, line in enumerate(lines):
+        dy = 0 if index == 0 else line_height
+        parts.append(f'<tspan x="{x}" dy="{dy}">{_escape(line)}</tspan>')
+    parts.append("</text>")
+    return "".join(parts)
+
+
 def _escape(value: object) -> str:
     return html.escape(str(value), quote=True)
 
@@ -164,42 +204,69 @@ def _architecture(model: dict[str, Any]) -> dict[str, Any]:
 
 def _working_svg(model: dict[str, Any]) -> str:
     bars = []
-    colors = ["#2563eb", "#0891b2", "#16a34a", "#ca8a04"]
+    insight_cards = []
+    colors = ["#2563eb", "#0891b2", "#10b981", "#f59e0b"]
     for index, point in enumerate(model["top_leverage_points"]):
-        width = 155 + int(float(point["severity"]) * 42)
-        y = 184 + index * 58
+        width = 214 + int(float(point["severity"]) * 58)
+        y = 344 + index * 68
         bars.append(
-            f'<text x="48" y="{y - 12}" class="label">{_escape(_short(point["metric"], 28))}</text>'
-            f'<rect x="48" y="{y}" width="{width}" height="20" rx="6" fill="{colors[index % len(colors)]}"/>'
-            f'<text x="{width + 64}" y="{y + 15}" class="small">{_escape(point["evidence"])}</text>'
+            f'<text x="84" y="{y - 13}" class="label">{_escape(point["metric"].replace("_", " "))}</text>'
+            f'<text x="454" y="{y - 13}" class="evidence">{_escape(point["evidence"])}</text>'
+            f'<rect x="84" y="{y}" width="398" height="16" rx="8" fill="#e2e8f0"/>'
+            f'<rect x="84" y="{y}" width="{min(width, 398)}" height="16" rx="8" fill="{colors[index % len(colors)]}"/>'
+            f'<text x="84" y="{y + 43}" class="caption">{_escape(_short(point["scenario"], 46))}</text>'
         )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-label="{_escape(COMPANY)} project working dashboard preview">
+        card_x = 620 + (index % 2) * 244
+        card_y = 316 + (index // 2) * 154
+        insight_cards.append(
+            f'<rect class="tile" x="{card_x}" y="{card_y}" width="212" height="126" rx="8"/>'
+            f'<text class="rank" x="{card_x + 18}" y="{card_y + 30}">0{index + 1}</text>'
+            + _text_block(
+                point["operator_action"],
+                x=card_x + 18,
+                y=card_y + 58,
+                css="cardtext",
+                limit=24,
+                max_lines=3,
+                line_height=18,
+            )
+            + f'<text class="evidence" x="{card_x + 18}" y="{card_y + 108}">{_escape(point["evidence"])}</text>'
+        )
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="650" viewBox="0 0 1120 650" role="img" aria-label="{_escape(COMPANY)} project working dashboard preview">
   <defs>
     <style>
-      .bg {{ fill: #f8fafc; }}
-      .panel {{ fill: #ffffff; stroke: #d9e2ec; stroke-width: 1.2; }}
-      .title {{ font: 700 32px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }}
-      .sub {{ font: 400 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }}
-      .label {{ font: 650 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }}
-      .small {{ font: 500 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }}
-      .metric {{ font: 750 30px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }}
+      .bg {{ fill: #f6f8fb; }}
+      .panel {{ fill: #ffffff; stroke: #d8e1ec; stroke-width: 1.1; }}
+      .tile {{ fill: #ffffff; stroke: #d8e1ec; stroke-width: 1.1; }}
+      .title {{ font: 760 31px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }}
+      .sub {{ font: 420 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }}
+      .label {{ font: 680 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }}
+      .caption {{ font: 500 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }}
+      .small {{ font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }}
+      .metric {{ font: 760 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }}
+      .rank {{ font: 760 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #2563eb; }}
+      .cardtext {{ font: 640 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }}
+      .evidence {{ font: 680 12px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #334155; }}
     </style>
   </defs>
-  <rect class="bg" width="1120" height="520" rx="0"/>
-  <rect class="panel" x="28" y="28" width="1064" height="464" rx="18"/>
-  <text class="title" x="48" y="82">{_escape(COMPANY)} evidence workbench</text>
-  <text class="sub" x="48" y="116">{_escape(PROJECT_DIRECTION)}</text>
-  <rect x="48" y="140" width="210" height="72" rx="14" fill="#eff6ff"/>
-  <text class="small" x="68" y="168">pressure index</text>
-  <text class="metric" x="68" y="198">{model["pressure_index"]}</text>
-  <rect x="276" y="140" width="210" height="72" rx="14" fill="#ecfeff"/>
-  <text class="small" x="296" y="168">evidence density</text>
-  <text class="metric" x="296" y="198">{model["evidence_density"]}</text>
-  <rect x="504" y="140" width="330" height="72" rx="14" fill="#f0fdf4"/>
-  <text class="small" x="524" y="168">highest leverage</text>
-  <text class="metric" x="524" y="198">{_escape(_short(model["top_leverage_points"][0]["scenario"], 24))}</text>
+  <rect class="bg" width="1120" height="650" rx="0"/>
+  <rect class="panel" x="28" y="28" width="1064" height="594" rx="8"/>
+  <text class="title" x="64" y="76">Talk Graph Control Room</text>
+  {_text_block(PROJECT_DIRECTION, x=64, y=108, css="sub", limit=82, max_lines=2, line_height=22)}
+  <rect class="tile" x="64" y="160" width="220" height="84" rx="8"/>
+  <text class="small" x="84" y="188">pressure index</text>
+  <text class="metric" x="84" y="224">{model["pressure_index"]}</text>
+  <rect class="tile" x="306" y="160" width="220" height="84" rx="8"/>
+  <text class="small" x="326" y="188">evidence density</text>
+  <text class="metric" x="326" y="224">{model["evidence_density"]}</text>
+  <rect class="tile" x="548" y="160" width="508" height="84" rx="8"/>
+  <text class="small" x="568" y="188">highest leverage path</text>
+  {_text_block(model["top_leverage_points"][0]["scenario"], x=568, y=218, css="label", limit=54, max_lines=1, line_height=16)}
+  <rect class="tile" x="64" y="286" width="472" height="314" rx="8"/>
+  <text class="label" x="84" y="316">risk signals from fixture replay</text>
   {''.join(bars)}
-  <text class="small" x="48" y="466">Generated locally from fixture replay, analysis.json, and citation-locked evidence IDs.</text>
+  <text class="label" x="620" y="286">operator actions that need evidence</text>
+  {''.join(insight_cards)}
 </svg>
 """
 
@@ -207,31 +274,51 @@ def _working_svg(model: dict[str, Any]) -> str:
 def _evidence_svg(model: dict[str, Any]) -> str:
     nodes = []
     edges = []
-    x_positions = [80, 330, 610, 870]
+    x_positions = [64, 304, 564, 780]
     for index, point in enumerate(model["top_leverage_points"]):
-        y = 92 + index * 92
-        nodes.append(f'<rect x="{x_positions[0]}" y="{y}" width="160" height="44" rx="10" fill="#eef2ff"/><text x="{x_positions[0]+14}" y="{y+27}" class="node">{_escape(_short(point["scenario"], 18))}</text>')
-        nodes.append(f'<rect x="{x_positions[1]}" y="{y}" width="190" height="44" rx="10" fill="#ecfeff"/><text x="{x_positions[1]+14}" y="{y+27}" class="node">{_escape(_short(point["failure_mode"], 22))}</text>')
-        nodes.append(f'<rect x="{x_positions[2]}" y="{y}" width="160" height="44" rx="10" fill="#fef9c3"/><text x="{x_positions[2]+14}" y="{y+27}" class="node">{_escape(point["evidence"])}</text>')
-        nodes.append(f'<rect x="{x_positions[3]}" y="{y}" width="170" height="44" rx="10" fill="#dcfce7"/><text x="{x_positions[3]+14}" y="{y+27}" class="node">{_escape(_short(point["operator_action"], 20))}</text>')
+        y = 116 + index * 90
+        nodes.append(
+            f'<rect class="scenario" x="{x_positions[0]}" y="{y}" width="186" height="58" rx="8"/>'
+            + _text_block(point["scenario"], x=x_positions[0] + 14, y=y + 24, css="node", limit=22, max_lines=2, line_height=17)
+        )
+        nodes.append(
+            f'<rect class="failure" x="{x_positions[1]}" y="{y}" width="190" height="58" rx="8"/>'
+            f'<text x="{x_positions[1] + 14}" y="{y + 34}" class="node">{_escape(point["failure_mode"].replace("_", " "))}</text>'
+        )
+        nodes.append(
+            f'<rect class="evidencebox" x="{x_positions[2]}" y="{y}" width="148" height="58" rx="8"/>'
+            f'<text x="{x_positions[2] + 28}" y="{y + 36}" class="evidence">{_escape(point["evidence"])}</text>'
+        )
+        nodes.append(
+            f'<rect class="action" x="{x_positions[3]}" y="{y}" width="276" height="58" rx="8"/>'
+            + _text_block(point["operator_action"], x=x_positions[3] + 14, y=y + 24, css="node", limit=34, max_lines=2, line_height=17)
+        )
         edges.extend([
-            f'<path d="M240 {y+22} L330 {y+22}" class="edge"/>',
-            f'<path d="M520 {y+22} L610 {y+22}" class="edge"/>',
-            f'<path d="M770 {y+22} L870 {y+22}" class="edge"/>',
+            f'<path d="M250 {y + 29} L304 {y + 29}" class="edge"/>',
+            f'<path d="M494 {y + 29} L564 {y + 29}" class="edge"/>',
+            f'<path d="M712 {y + 29} L780 {y + 29}" class="edge"/>',
         ])
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" role="img" aria-label="{_escape(COMPANY)} evidence map">
   <defs>
     <style>
-      .title {{ font: 750 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill:#111827; }}
-      .node {{ font: 600 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill:#1f2937; }}
+      .bg {{ fill:#f8fafc; }}
+      .panel {{ fill:#ffffff; stroke:#d8e1ec; stroke-width:1.1; }}
+      .title {{ font: 760 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill:#111827; }}
+      .node {{ font: 620 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill:#1f2937; }}
       .head {{ font: 700 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill:#64748b; }}
+      .evidence {{ font: 720 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill:#334155; }}
       .edge {{ stroke:#94a3b8; stroke-width:2; fill:none; marker-end:url(#arrow); }}
+      .scenario {{ fill:#eef2ff; stroke:#dbe4ff; }}
+      .failure {{ fill:#ecfeff; stroke:#bfecf2; }}
+      .evidencebox {{ fill:#fef9c3; stroke:#f5e889; }}
+      .action {{ fill:#dcfce7; stroke:#b8efca; }}
     </style>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/></marker>
   </defs>
-  <rect width="1120" height="500" fill="#ffffff"/>
-  <text x="56" y="52" class="title">{_escape(COMPANY)} evidence path</text>
-  <text x="80" y="82" class="head">scenario</text><text x="330" y="82" class="head">failure mode</text><text x="610" y="82" class="head">evidence</text><text x="870" y="82" class="head">operator action</text>
+  <rect class="bg" width="1120" height="500"/>
+  <rect class="panel" x="28" y="28" width="1064" height="444" rx="8"/>
+  <text x="56" y="70" class="title">{_escape(COMPANY)} evidence path</text>
+  <text x="64" y="104" class="head">scenario</text><text x="304" y="104" class="head">failure mode</text><text x="564" y="104" class="head">evidence</text><text x="780" y="104" class="head">operator action</text>
   {''.join(edges)}
   {''.join(nodes)}
 </svg>

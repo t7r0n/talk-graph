@@ -1,28 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-label="Aalto project working dashboard preview">
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="650" viewBox="0 0 1120 650" role="img" aria-label="Aalto project working dashboard preview">
   <defs>
     <style>
-      .bg { fill: #f8fafc; }
-      .panel { fill: #ffffff; stroke: #d9e2ec; stroke-width: 1.2; }
-      .title { font: 700 32px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
-      .sub { font: 400 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
-      .label { font: 650 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }
-      .small { font: 500 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
-      .metric { font: 750 30px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .bg { fill: #f6f8fb; }
+      .panel { fill: #ffffff; stroke: #d8e1ec; stroke-width: 1.1; }
+      .tile { fill: #ffffff; stroke: #d8e1ec; stroke-width: 1.1; }
+      .title { font: 760 31px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+      .sub { font: 420 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .label { font: 680 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }
+      .caption { font: 500 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
+      .small { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
+      .metric { font: 760 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .rank { font: 760 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #2563eb; }
+      .cardtext { font: 640 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #172033; }
+      .evidence { font: 680 12px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #334155; }
     </style>
   </defs>
-  <rect class="bg" width="1120" height="520" rx="0"/>
-  <rect class="panel" x="28" y="28" width="1064" height="464" rx="18"/>
-  <text class="title" x="48" y="82">Aalto evidence workbench</text>
-  <text class="sub" x="48" y="116">A retrieval augmented founder coaching surface that turns every Founder Talk into clickable, citable, searchable advice - and stitches each lesson to the alumni companies it influenced.</text>
-  <rect x="48" y="140" width="210" height="72" rx="14" fill="#eff6ff"/>
-  <text class="small" x="68" y="168">pressure index</text>
-  <text class="metric" x="68" y="198">0.3167</text>
-  <rect x="276" y="140" width="210" height="72" rx="14" fill="#ecfeff"/>
-  <text class="small" x="296" y="168">evidence density</text>
-  <text class="metric" x="296" y="198">17.75</text>
-  <rect x="504" y="140" width="330" height="72" rx="14" fill="#f0fdf4"/>
-  <text class="small" x="524" y="168">highest leverage</text>
-  <text class="metric" x="524" y="198">founder evidence replay</text>
-  <text x="48" y="172" class="label">founder_coverage</text><rect x="48" y="184" width="264" height="20" rx="6" fill="#2563eb"/><text x="328" y="199" class="small">ev_0132</text><text x="48" y="230" class="label">talks_risk</text><rect x="48" y="242" width="262" height="20" rx="6" fill="#0891b2"/><text x="326" y="257" class="small">ev_0099</text><text x="48" y="288" class="label">monthly_precision</text><rect x="48" y="300" width="261" height="20" rx="6" fill="#16a34a"/><text x="325" y="315" class="small">ev_0110</text><text x="48" y="346" class="label">fireside_latency</text><rect x="48" y="358" width="261" height="20" rx="6" fill="#ca8a04"/><text x="325" y="373" class="small">ev_0033</text>
-  <text class="small" x="48" y="466">Generated locally from fixture replay, analysis.json, and citation-locked evidence IDs.</text>
+  <rect class="bg" width="1120" height="650" rx="0"/>
+  <rect class="panel" x="28" y="28" width="1064" height="594" rx="8"/>
+  <text class="title" x="64" y="76">Talk Graph Control Room</text>
+  <text class="sub" x="64" y="108"><tspan x="64" dy="0">A retrieval augmented founder coaching surface that turns every Founder Talk into</tspan><tspan x="64" dy="22">clickable, citable, searchable advice - and stitches each lesson to the alumni</tspan></text>
+  <rect class="tile" x="64" y="160" width="220" height="84" rx="8"/>
+  <text class="small" x="84" y="188">pressure index</text>
+  <text class="metric" x="84" y="224">0.3167</text>
+  <rect class="tile" x="306" y="160" width="220" height="84" rx="8"/>
+  <text class="small" x="326" y="188">evidence density</text>
+  <text class="metric" x="326" y="224">17.75</text>
+  <rect class="tile" x="548" y="160" width="508" height="84" rx="8"/>
+  <text class="small" x="568" y="188">highest leverage path</text>
+  <text class="label" x="568" y="218"><tspan x="568" dy="0">founder evidence replay</tspan></text>
+  <rect class="tile" x="64" y="286" width="472" height="314" rx="8"/>
+  <text class="label" x="84" y="316">risk signals from fixture replay</text>
+  <text x="84" y="331" class="label">founder coverage</text><text x="454" y="331" class="evidence">ev_0132</text><rect x="84" y="344" width="398" height="16" rx="8" fill="#e2e8f0"/><rect x="84" y="344" width="365" height="16" rx="8" fill="#2563eb"/><text x="84" y="387" class="caption">founder evidence replay</text><text x="84" y="399" class="label">talks risk</text><text x="454" y="399" class="evidence">ev_0099</text><rect x="84" y="412" width="398" height="16" rx="8" fill="#e2e8f0"/><rect x="84" y="412" width="362" height="16" rx="8" fill="#0891b2"/><text x="84" y="455" class="caption">fireside operator packet</text><text x="84" y="467" class="label">monthly precision</text><text x="454" y="467" class="evidence">ev_0110</text><rect x="84" y="480" width="398" height="16" rx="8" fill="#e2e8f0"/><rect x="84" y="480" width="360" height="16" rx="8" fill="#10b981"/><text x="84" y="523" class="caption">monthly regression harness</text><text x="84" y="535" class="label">fireside latency</text><text x="454" y="535" class="evidence">ev_0033</text><rect x="84" y="548" width="398" height="16" rx="8" fill="#e2e8f0"/><rect x="84" y="548" width="360" height="16" rx="8" fill="#f59e0b"/><text x="84" y="591" class="caption">talks boundary probe</text>
+  <text class="label" x="620" y="286">operator actions that need evidence</text>
+  <rect class="tile" x="620" y="316" width="212" height="126" rx="8"/><text class="rank" x="638" y="346">01</text><text class="cardtext" x="638" y="374"><tspan x="638" dy="0">block release until</tspan><tspan x="638" dy="18">cited evidence is</tspan><tspan x="638" dy="18">regenerated</tspan></text><text class="evidence" x="638" y="424">ev_0132</text><rect class="tile" x="864" y="316" width="212" height="126" rx="8"/><text class="rank" x="882" y="346">02</text><text class="cardtext" x="882" y="374"><tspan x="882" dy="0">accept only if decision</tspan><tspan x="882" dy="18">claims cite fixture</tspan><tspan x="882" dy="18">evidence</tspan></text><text class="evidence" x="882" y="424">ev_0099</text><rect class="tile" x="620" y="470" width="212" height="126" rx="8"/><text class="rank" x="638" y="500">03</text><text class="cardtext" x="638" y="528"><tspan x="638" dy="0">open a regression issue</tspan><tspan x="638" dy="18">with trace and benchmark</tspan><tspan x="638" dy="18">delta</tspan></text><text class="evidence" x="638" y="578">ev_0110</text><rect class="tile" x="864" y="470" width="212" height="126" rx="8"/><text class="rank" x="882" y="500">04</text><text class="cardtext" x="882" y="528"><tspan x="882" dy="0">route to reviewer with</tspan><tspan x="882" dy="18">evidence packet</tspan></text><text class="evidence" x="882" y="578">ev_0033</text>
 </svg>
