@@ -1,7 +1,5 @@
 scenario,cases,blocks,reviews,mean_severity,mean_score,top_evidence_id,recommended_action
-fireside policy boundary,24,2,3,1.708,0.2775,ev_0033,block release until replay is understood
-founder drift,24,2,3,2.5,0.3744,ev_0022,block release until replay is understood
-founder evidence recall,24,3,3,1.875,0.2864,ev_0000,block release until replay is understood
-monthly failure replay,24,2,4,3.333,0.5332,ev_0110,block release until replay is understood
-talks gap,24,3,2,3.333,0.5205,ev_0143,block release until replay is understood
-talks reviewer handoff,24,2,4,2.583,0.4074,ev_0121,block release until replay is understood
+fireside operator packet,36,4,5,2.556,0.3976,ev_0099,accept only if decision claims cite fixture evidence
+founder evidence replay,36,4,5,2.611,0.4021,ev_0132,block release until cited evidence is regenerated
+monthly regression harness,36,3,5,2.528,0.3821,ev_0110,open a regression issue with trace and benchmark delta
+talks boundary probe,36,3,4,2.528,0.3627,ev_0033,route to reviewer with evidence packet
